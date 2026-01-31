@@ -22,9 +22,39 @@
 body.dark-mode {
   --bg-light: #1a1a1a;
   --white: #2a2a2a;
-  --text-dark: #f5f5f0;
+  --text-dark: #e4e6eb;
   --text-muted: #b0b0b0;
   --overlay: rgba(0,0,0,0.8);
+}
+
+body.dark-mode .header.scrolled {
+  background: #2a2a2a;
+}
+
+body.dark-mode .nav-menu {
+  background: #2a2a2a;
+}
+
+body.dark-mode .about-content,
+body.dark-mode .journey-detail,
+body.dark-mode .plan-card,
+body.dark-mode .contact-content,
+body.dark-mode .info-section {
+  background: #2a2a2a;
+  color: #e4e6eb;
+}
+
+body.dark-mode .mission-content {
+  background: #2a2a2a;
+  color: #e4e6eb;
+}
+
+body.dark-mode .faq-item {
+  background: #1a1a1a;
+}
+
+body.dark-mode .journey-lesson {
+  background: #1a1a1a;
 }
 
 * {
@@ -263,30 +293,44 @@ body {
 /* ===== NAVIGATION MENU ===== */
 .nav-menu {
   background: var(--white);
-  padding: 1.5rem 3rem;
+  padding: 1rem 3rem;
   box-shadow: 0 2px 15px rgba(0,0,0,0.1);
   position: sticky;
   top: 100px;
   z-index: 100;
   transition: all 0.4s ease;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-list {
   display: flex;
-  gap: 2rem;
+  gap: 0.8rem;
   list-style: none;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-item {
   cursor: pointer;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   transition: all 0.3s ease;
   font-weight: 600;
+  font-size: 0.85rem;
   color: var(--text-dark);
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-item img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
 .nav-item::after {
@@ -295,7 +339,7 @@ body {
   bottom: 0;
   left: 50%;
   width: 0;
-  height: 3px;
+  height: 2px;
   background: var(--primary-green);
   transform: translateX(-50%);
   transition: width 0.3s ease;
@@ -306,6 +350,10 @@ body {
   transform: translateY(-2px);
 }
 
+.nav-item:hover img {
+  transform: scale(1.1);
+}
+
 .nav-item:hover::after {
   width: 80%;
 }
@@ -313,6 +361,10 @@ body {
 .nav-item.active {
   background: var(--primary-green);
   color: white;
+}
+
+.nav-item.active img {
+  filter: brightness(0) invert(1);
 }
 
 /* ===== SECTIONS ===== */
@@ -726,9 +778,28 @@ body {
   }
   
   .nav-item {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    gap: 0.3rem;
   }
+  
+  .nav-item img {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .footer-social {
+    padding: 0.8rem 1rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  
+  .social-footer-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    gap: 0.3rem;
+  }
+}
   
   .section {
     padding: 2rem 1.5rem;
@@ -847,12 +918,30 @@ body {
   <!-- Navigation Menu -->
   <nav class="nav-menu">
     <ul class="nav-list">
-      <li class="nav-item active" onclick="showSection('home')">Home</li>
-      <li class="nav-item" onclick="showSection('about')">About Us</li>
-      <li class="nav-item" onclick="showSection('journey')">Our Journey</li>
-      <li class="nav-item" onclick="showSection('plan')">Next Plan</li>
-      <li class="nav-item" onclick="showSection('contact')">Contact Us</li>
-      <li class="nav-item" onclick="showSection('info')">Information</li>
+      <li class="nav-item active" onclick="showSection('home')">
+        <img src="IconHome.png" alt="Home">
+        <span>Home</span>
+      </li>
+      <li class="nav-item" onclick="showSection('about')">
+        <img src="IconAbout.png" alt="About">
+        <span>About Us</span>
+      </li>
+      <li class="nav-item" onclick="showSection('journey')">
+        <img src="IconJourney.png" alt="Journey">
+        <span>Our Journey</span>
+      </li>
+      <li class="nav-item" onclick="showSection('plan')">
+        <img src="IconPlan.png" alt="Plan">
+        <span>Next Plan</span>
+      </li>
+      <li class="nav-item" onclick="showSection('contact')">
+        <img src="IconContact.png" alt="Contact">
+        <span>Contact Us</span>
+      </li>
+      <li class="nav-item" onclick="showSection('info')">
+        <img src="IconInfo.png" alt="Info">
+        <span>Information</span>
+      </li>
     </ul>
   </nav>
 
@@ -1125,6 +1214,22 @@ body {
   </section>
 </div>
 
+<!-- Footer Social Media -->
+<div class="footer-social" id="footerSocial">
+  <a href="https://instagram.com/clear.adv" target="_blank" class="social-footer-link instagram">
+    <span>📸</span>
+    <span>Instagram</span>
+  </a>
+  <a href="https://tiktok.com/@clear.adv" target="_blank" class="social-footer-link tiktok">
+    <span>🎵</span>
+    <span>TikTok</span>
+  </a>
+  <a href="https://whatsapp.com/channel/0029VaClearAdv" target="_blank" class="social-footer-link whatsapp">
+    <span>💬</span>
+    <span>WhatsApp</span>
+  </a>
+</div>
+
 <!-- Audio Control -->
 <div class="audio-control" id="audioControl" onclick="toggleAudio()">
   <span id="audioIcon">🔊</span>
@@ -1195,6 +1300,7 @@ function exploreJourney() {
   document.getElementById('hero').style.display = 'none';
   document.getElementById('mainContent').classList.add('show');
   document.getElementById('audioControl').classList.add('show');
+  document.getElementById('footerSocial').classList.add('show');
   
   const music = document.getElementById('bgMusic');
   music.play();
@@ -1206,6 +1312,7 @@ function showSection(section) {
   if(section === 'home') {
     document.getElementById('mainContent').classList.remove('show');
     document.getElementById('audioControl').classList.remove('show');
+    document.getElementById('footerSocial').classList.remove('show');
     const music = document.getElementById('bgMusic');
     music.pause();
     music.currentTime = 0;
@@ -1282,4 +1389,4 @@ function toggleJourneyText(journeyId) {
 </script>
 
 </body>
-</html>
+  </html>
