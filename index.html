@@ -117,10 +117,9 @@ body {
   color: var(--white);
 }
 
-/* ===== HERO SECTION (updated for visibility & mobile) ===== */
+/* ===== HERO SECTION (ensure background visible & content above overlay) ===== */
 .hero {
   min-height: 100vh;
-  /* explicit background properties for compatibility */
   background-image: url('Sampul1.jpg');
   background-position: center center;
   background-size: cover;
@@ -136,22 +135,24 @@ body {
   align-items: center;
   text-align: center;
   padding: 2rem;
-  z-index: 0; /* ensure pseudo & bg are behind content */
+  /* create stacking context */
+  z-index: 0;
 }
 
-/* overlay remains but lighter so image still shows through */
+/* overlay stays above background but under content; reduced opacity so image shows */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
-  z-index: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.28));
+  z-index: 1;
   pointer-events: none;
 }
 
+/* hero content must be above overlay */
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   color: white;
   max-width: 900px;
   animation: fadeInUp 1s ease;
@@ -716,8 +717,8 @@ body {
   bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2000;
-  background: rgba(255,255,255,0.92);
+  z-index: 3000;
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(6px);
   border-radius: 40px;
   padding: 8px 14px;
@@ -726,6 +727,7 @@ body {
   align-items: center;
   box-shadow: 0 6px 30px rgba(0,0,0,0.12);
   border: 1px solid rgba(0,0,0,0.04);
+  pointer-events: auto;
 }
 
 .social-fixed a {
@@ -737,6 +739,7 @@ body {
   align-items: center;
   gap: 8px;
   font-size: 0.95rem;
+  pointer-events: auto;
 }
 
 /* Instagram text gradient */
@@ -1137,21 +1140,24 @@ body {
 
 <!-- Fixed Social Bar (always visible bottom center) -->
 <div class="social-fixed" aria-hidden="false" role="navigation" title="Sosial Media">
-  <!-- Replace href="#" with your real links later -->
-  <a class="ig" href="#" id="linkInstagram" target="_blank" rel="noopener noreferrer">Instagram</a>
-  <a class="tt" href="#" id="linkTiktok" target="_blank" rel="noopener noreferrer">TikTok</a>
-  <a class="wa" href="#" id="linkWhatsApp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <!-- Placeholder links (clickable). Replace with your real links later. -->
+  <a class="ig" href="https://instagram.com/" id="linkInstagram" target="_blank" rel="noopener noreferrer">Instagram</a>
+  <a class="tt" href="https://www.tiktok.com/" id="linkTiktok" target="_blank" rel="noopener noreferrer">TikTok</a>
+  <a class="wa" href="https://wa.me/08123456789" id="linkWhatsApp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
 </div>
 
 <!-- Optional audio control toggle -->
-<div class="audio-control" id="audioControl" onclick="toggleAudio()" aria-label="Toggle background audio">
+<div class="audio-control" id="audioControl" onclick="toggleAudio()" aria-label="Toggle background audio" title="Toggle background audio">
   <span id="audioIcon">🔈</span>
 </div>
 
 <script>
-/* Minimal JS to support interactions referenced in the markup.
-   Keputusan: implement functions non-invasively so existing behavior works.
-   You can replace the placeholder links (#) with your real links later. */
+/* Minimal JS to support interactions.
+   Changes made:
+   - Explore button now attempts to play bgMusic (user interaction -> allowed by browsers).
+   - Ensure audio control and icon update accordingly.
+   - Social links are real href placeholders so they are clickable.
+*/
 
 /* Dark mode toggle */
 function toggleDarkMode() {
@@ -1164,17 +1170,40 @@ function toggleDarkMode() {
   }
 }
 
-/* Show main content / scroll to journey */
+/* Show main content / scroll to journey and autoplay music */
 function exploreJourney() {
   const main = document.getElementById('mainContent');
   main.classList.add('show');
   document.querySelector('.nav-item.active')?.classList.remove('active');
   document.querySelector('.nav-item[onclick*="showSection(\'journey\')"]')?.classList.add('active');
   showSection('journey');
+
+  // Play background music in response to user interaction
+  const bg = document.getElementById('bgMusic');
+  if (bg) {
+    bg.play().then(() => {
+      // played successfully
+      const audioControl = document.getElementById('audioControl');
+      const audioIcon = document.getElementById('audioIcon');
+      if (audioControl && audioIcon) {
+        audioControl.classList.add('show');
+        audioIcon.textContent = '🔊';
+      }
+    }).catch((err) => {
+      // play failed (browser restrictions). Show control so user can enable.
+      const audioControl = document.getElementById('audioControl');
+      const audioIcon = document.getElementById('audioIcon');
+      if (audioControl) audioControl.classList.add('show');
+      if (audioIcon) audioIcon.textContent = '🔈';
+      // optional: console log for debug
+      console.warn('Autoplay blocked or failed:', err);
+    });
+  }
+
   // small delay then scroll
   setTimeout(() => {
     document.getElementById('journeySection').scrollIntoView({ behavior: 'smooth' });
-  }, 100);
+  }, 120);
 }
 
 /* Show mission (hide hero, show mission page) */
@@ -1282,14 +1311,22 @@ const audioControl = document.getElementById('audioControl');
 const audioIcon = document.getElementById('audioIcon');
 // show audio control only if audio source present
 if (bgMusic && bgMusic.querySelector('source')) {
+  // show control only when user interacts or when play succeeds. keep hidden until then.
+  // BUT ensure control becomes available so user can tap if autoplay blocked:
+  // Show the control so user can manually enable audio if autoplay is blocked.
   audioControl.classList.add('show');
+  audioIcon.textContent = '🔈';
 }
 
 function toggleAudio() {
   if (!bgMusic) return;
   if (bgMusic.paused) {
-    bgMusic.play().catch(()=>{ /* autoplay may be blocked */ });
-    audioIcon.textContent = '🔊';
+    bgMusic.play().then(() => {
+      audioIcon.textContent = '🔊';
+    }).catch(() => {
+      // autoplay failed
+      audioIcon.textContent = '🔈';
+    });
   } else {
     bgMusic.pause();
     audioIcon.textContent = '🔈';
@@ -1303,16 +1340,9 @@ window.addEventListener('scroll', () => {
   else header.classList.remove('scrolled');
 });
 
-/* Accessibility: allow changing social links dynamically (placeholders) */
-/* If you want to programmatically set links, you can call:
-   document.getElementById('linkInstagram').href = 'https://instagram.com/yourprofile';
-   document.getElementById('linkTiktok').href = 'https://tiktok.com/@yourprofile';
-   document.getElementById('linkWhatsApp').href = 'https://wa.me/yourphonenumber';
-*/
-
-/* Ensure page works on initial load (hero visible, main content hidden) */
+/* Ensure page works on initial load */
 document.addEventListener('DOMContentLoaded', () => {
-  // nothing else required, but keep hooks ready
+  // nothing else required here
 });
 </script>
 </body>
