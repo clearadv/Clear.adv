@@ -1245,6 +1245,40 @@ body {
     <span>WhatsApp</span>
   </a>
 </div>
+ /* ===== SOCIAL ===== */
+.social-links{
+  text-align:center;
+  padding:2rem 0;
+}
+.social-links a{
+  margin:0 .7rem;
+  font-weight:600;
+  text-decoration:none;
+  transition: transform 0.2s;
+}
+.social-links a:hover{
+  transform: translateY(-2px);
+}
+
+/* Instagram - Gradient Pink-Ungu-Orange */
+.social-links a:nth-child(1){
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* TikTok - Hitam dengan hint pink-cyan */
+.social-links a:nth-child(2){
+  color: #000;
+  text-shadow: 2px 2px 0 #fe2c55, -2px -2px 0 #00f2ea;
+}
+
+/* Facebook - Biru */
+.social-links a:nth-child(3){
+  color: var(--fb-blue);
+}
+
 
 <!-- Audio Control -->
 <div class="audio-control" id="audioControl" onclick="toggleAudio()">
