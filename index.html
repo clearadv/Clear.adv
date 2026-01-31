@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLEAR.ADV - Leave Nothing. Take Memories</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary-green: #2d5016;
+  --accent-green: #4a7c2c;
+  --light-green: #7fb069;
+  --bg-light: #f5f5f0;
+  --text-dark: #1a1a1a;
+  --text-muted: #666;
+  --white: #ffffff;
+  --overlay: rgba(0,0,0,0.6);
+}
+
+body.dark-mode {
+  --bg-light: #1a1a1a;
+  --white: #2a2a2a;
+  --text-dark: #f5f5f0;
+  --text-muted: #b0b0b0;
+  --overlay: rgba(0,0,0,0.8);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: transparent;
+  transition: background 0.4s ease;
+}
+
+.header.scrolled {
+  background: var(--white);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.logo img {
+  height: 60px;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+.dark-toggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-green);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-toggle::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background: var(--primary-green);
+  transition: width 0.4s ease;
+  z-index: 0;
+}
+
+.dark-toggle:hover::before {
+  width: 100%;
+}
+
+.dark-toggle:hover {
+  transform: rotate(180deg);
+  border-color: var(--accent-green);
+}
+
+.dark-toggle span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.dark-toggle:hover span {
+  color: var(--white);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  min-height: 100vh;
+  background: url('Sampul1.jpg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  max-width: 900px;
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero h1 .nature {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--light-green);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+  font-weight: 300;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: var(--primary-green);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-green);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(45,80,22,0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary:hover {
+  background: white;
+  color: var(--primary-green);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  display: none;
+  opacity: 0;
+  min-height: 100vh;
+  padding-top: 120px;
+}
+
+.main-content.show {
+  display: block;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== NAVIGATION MENU ===== */
+.nav-menu {
+  background: var(--white);
+  padding: 1.5rem 3rem;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 100px;
+  z-index: 100;
+  transition: all 0.4s ease;
+}
+
+.nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: var(--text-dark);
+  position: relative;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--primary-green);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover {
+  color: var(--primary-green);
+  transform: translateY(-2px);
+}
+
+.nav-item:hover::after {
+  width: 80%;
+}
+
+.nav-item.active {
+  background: var(--primary-green);
+  color: white;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  display: none;
+  padding: 4rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: slideIn 0.5s ease;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  color: var(--primary-green);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* ===== MISSION PAGE ===== */
+.mission-page {
+  display: none;
+  opacity: 0;
+  min-height: 100vh;
+  padding: 150px 3rem 4rem;
+}
+
+.mission-page.show {
+  display: block;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.mission-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.mission-content h1 {
+  font-size: 3rem;
+  color: var(--primary-green);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.mission-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+}
+
+.mission-text.indonesian {
+  display: none;
+}
+
+.translate-btn {
+  background: none;
+  border: none;
+  color: var(--accent-green);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+  display: block;
+  margin: 1rem auto;
+}
+
+.translate-btn:hover {
+  color: var(--primary-green);
+}
+
+.back-btn {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* ===== ABOUT US ===== */
+.about-content {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.about-content p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+
+.about-content h3 {
+  color: var(--primary-green);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* ===== OUR JOURNEY ===== */
+.journey-tabs {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.journey-tab {
+  padding: 0.8rem 1.5rem;
+  background: var(--white);
+  border: 2px solid var(--primary-green);
+  border-radius: 25px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: var(--primary-green);
+}
+
+.journey-tab:hover {
+  background: var(--light-green);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.journey-tab.active {
+  background: var(--primary-green);
+  color: white;
+}
+
+.journey-detail {
+  display: none;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  animation: fadeIn 0.4s ease;
+}
+
+.journey-detail.show {
+  display: block;
+}
+
+.journey-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.journey-images img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.journey-images img:hover {
+  transform: scale(1.05);
+}
+
+.journey-story h3 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.journey-text {
+  max-height: 5em;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.journey-text.expanded {
+  max-height: 1000px;
+}
+
+.read-more {
+  background: none;
+  border: none;
+  color: var(--accent-green);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 0.5rem;
+}
+
+.read-more:hover {
+  color: var(--primary-green);
+}
+
+.journey-lesson {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-light);
+  border-left: 4px solid var(--primary-green);
+  border-radius: 5px;
+}
+
+.journey-lesson strong {
+  color: var(--primary-green);
+}
+
+/* ===== NEXT PLAN ===== */
+.plan-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.plan-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.plan-card h3 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.plan-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: var(--light-green);
+  color: white;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.plan-card p {
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+
+/* ===== CONTACT US ===== */
+.contact-content {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.contact-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.wa-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2rem;
+  background: #25D366;
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.wa-button:hover {
+  background: #128C7E;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(37,211,102,0.4);
+}
+
+/* ===== INFORMATION ===== */
+.info-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.info-section {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.info-section h3 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.info-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.info-section li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--bg-light);
+  line-height: 1.6;
+}
+
+.info-section li:last-child {
+  border-bottom: none;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.social-link {
+  padding: 0.8rem 1.5rem;
+  background: var(--primary-green);
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.social-link:hover {
+  background: var(--accent-green);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(45,80,22,0.3);
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-light);
+  border-radius: 10px;
+}
+
+.faq-item strong {
+  color: var(--primary-green);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.disclaimer {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.disclaimer strong {
+  color: #856404;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .logo img {
+    height: 45px;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .nav-menu {
+    padding: 1rem;
+  }
+  
+  .nav-list {
+    gap: 0.8rem;
+  }
+  
+  .nav-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .section h2 {
+    font-size: 2rem;
+  }
+  
+  .mission-page {
+    padding: 120px 1.5rem 2rem;
+  }
+  
+  .mission-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .mission-content h1 {
+    font-size: 2rem;
+  }
+}
+
+/* ===== AUDIO CONTROLS ===== */
+.audio-control {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: var(--primary-green);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.audio-control.show {
+  display: flex;
+}
+
+.audio-control:hover {
+  transform: scale(1.1);
+  background: var(--accent-green);
+}
+
+.audio-control span {
+  color: white;
+  font-size: 1.5rem;
+}
+</style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="Musik01.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Header -->
+<header class="header" id="header">
+  <div class="logo">
+    <img src="Logo.png" alt="CLEAR.ADV">
+  </div>
+  <div class="dark-toggle" onclick="toggleDarkMode()">
+    <span id="darkIcon">🌙</span>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <h1>Step Into the Stillness of <span class="nature">Nature</span></h1>
+    <p>Explore nature responsibly with Clear Adv, leaving nothing behind but footprints, taking nothing but memories.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="exploreJourney()">
+        <span>Explore Our Journey</span>
+      </button>
+      <button class="btn btn-secondary" onclick="showMission()">
+        <span>Learn About Our Mission</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Page -->
+<div class="mission-page" id="missionPage">
+  <div class="mission-content">
+    <h1>Our Mission</h1>
+    <div class="mission-text english" id="missionEnglish">
+      <p>Clear Adventure exists to reconnect people with nature through responsible exploration.</p>
+      <p>We believe that every journey should leave the environment as clear as we found it.</p>
+      <p>Our mission is to promote conscious adventures—where respect for nature, safety, and sustainability come first. We explore mountains, forests, and wild spaces with a simple principle: leave nothing behind but footprints, take nothing but memories.</p>
+      <p>Through every step, we aim to inspire adventurers to travel lightly, act responsibly, and protect the natural beauty for future generations.</p>
+    </div>
+    <div class="mission-text indonesian" id="missionIndonesian">
+      <p>Clear Adventure hadir untuk menghubungkan kembali manusia dengan alam melalui eksplorasi yang bertanggung jawab.</p>
+      <p>Kami percaya bahwa setiap perjalanan harus meninggalkan lingkungan sebersih saat kami menemukannya.</p>
+      <p>Misi kami adalah mempromosikan petualangan yang sadar—di mana penghormatan terhadap alam, keselamatan, dan keberlanjutan menjadi prioritas utama. Kami menjelajahi gunung, hutan, dan ruang liar dengan prinsip sederhana: tidak meninggalkan apa pun selain jejak kaki, tidak mengambil apa pun selain kenangan.</p>
+      <p>Melalui setiap langkah, kami bertujuan menginspirasi para petualang untuk bepergian dengan ringan, bertindak bertanggung jawab, dan melindungi keindahan alam untuk generasi mendatang.</p>
+    </div>
+    <button class="translate-btn" onclick="toggleTranslate()">Lihat Terjemahan</button>
+    <div class="back-btn">
+      <button class="btn btn-primary" onclick="backToHero()">
+        <span>Back to Home</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+  <!-- Navigation Menu -->
+  <nav class="nav-menu">
+    <ul class="nav-list">
+      <li class="nav-item active" onclick="showSection('home')">Home</li>
+      <li class="nav-item" onclick="showSection('about')">About Us</li>
+      <li class="nav-item" onclick="showSection('journey')">Our Journey</li>
+      <li class="nav-item" onclick="showSection('plan')">Next Plan</li>
+      <li class="nav-item" onclick="showSection('contact')">Contact Us</li>
+      <li class="nav-item" onclick="showSection('info')">Information</li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section class="section active" id="homeSection">
+    <h2>Welcome to Clear Adventure</h2>
+    <div class="about-content">
+      <p style="font-size:1.2rem; text-align:center; color:var(--primary-green); font-weight:600;">Leave Nothing. Take Memories.</p>
+      <p style="text-align:center; margin-top:2rem;">Explore our sections to learn more about our adventures, upcoming plans, and how you can join us in protecting nature.</p>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="section" id="aboutSection">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <p>Clear Adventure was born from a simple belief: nature is not just a destination, it's a teacher, a sanctuary, and a responsibility.</p>
+      
+      <p>We are a community of passionate adventurers who found ourselves drawn to mountains, forests, and wild spaces—not to conquer them, but to learn from them. Every summit we reach, every trail we walk, and every campfire we share reminds us of how small we are in the face of nature's grandeur, and how important it is to protect it.</p>
+      
+      <h3>Why We Exist</h3>
+      <p>In a world that moves too fast, nature offers stillness. In a life filled with noise, it offers silence. We created Clear Adventure to help people reconnect with that stillness and silence—to explore responsibly, to travel consciously, and to leave every place better than we found it.</p>
+      
+      <h3>Our Values & Principles</h3>
+      <p><strong>Respect:</strong> We treat nature with the reverence it deserves, never taking more than we need and always leaving zero trace.</p>
+      <p><strong>Responsibility:</strong> Every adventure comes with a duty—to ourselves, to our companions, and to the environment.</p>
+      <p><strong>Community:</strong> We believe in the power of shared experiences. Together, we learn, grow, and inspire each other to be better stewards of nature.</p>
+      <p><strong>Sustainability:</strong> Our adventures are designed to minimize environmental impact and maximize positive change.</p>
+      
+      <h3>The Meaning of "Clear"</h3>
+      <p><strong>Clear</strong> represents three pillars of our philosophy:</p>
+      <p><strong>Clean:</strong> We leave the environment as pristine as we found it—no litter, no damage, no trace.</p>
+      <p><strong>Conscious:</strong> We make mindful choices in every step of our journey, from planning to execution.</p>
+      <p><strong>Committed:</strong> We are dedicated to protecting nature for future generations through education, action, and advocacy.</p>
+      
+      <p style="margin-top:2rem; font-style:italic; color:var(--primary-green);">"We don't explore to escape life. We explore so life doesn't escape us."</p>
+    </div>
+  </section>
+
+  <!-- Our Journey Section -->
+  <section class="section" id="journeySection">
+    <h2>Our Journey</h2>
+    
+    <div class="journey-tabs">
+      <div class="journey-tab active" onclick="showJourney('bawakaraeng')">Mt. Bawakaraeng</div>
+      <div class="journey-tab" onclick="showJourney('latimojong')">Mt. Latimojong</div>
+      <div class="journey-tab" onclick="showJourney('rammang')">Rammang-Rammang</div>
+      <div class="journey-tab" onclick="showJourney('bantimurung')">Bantimurung</div>
+    </div>
+
+    <!-- Bawakaraeng -->
+    <div class="journey-detail show" id="journey-bawakaraeng">
+      <div class="journey-images">
+        <img src="Dokumentasi01.jpg" alt="Bawakaraeng 1">
+        <img src="Dokumentasi02.jpg" alt="Bawakaraeng 2">
+        <img src="Dokumentasi03.jpg" alt="Bawakaraeng 3">
+      </div>
+      <div class="journey-story">
+        <h3>Conquering Mt. Bawakaraeng: A Journey to the Roof of South Sulawesi</h3>
+        <div class="journey-text" id="text-bawakaraeng">
+          <p>Standing at 2,833 meters above sea level, Mt. Bawakaraeng is one of the most challenging and rewarding peaks in South Sulawesi. Our journey began at dawn, with the cold mountain air filling our lungs as we started the ascent through dense tropical forests. The trail was steep, muddy in places, and required every ounce of our physical and mental strength.</p>
+          <p>As we climbed higher, the forest gave way to open savanna, and the views became more breathtaking with every step. The famous Lembah Ramma (Ramma Valley) stretched below us like a green carpet, surrounded by towering peaks. At the summit, we were rewarded with a 360-degree panorama—clouds below us, the sunrise painting the sky in gold and orange, and a profound sense of accomplishment.</p>
+          <p>This climb taught us that nature doesn't give its beauty easily. It demands respect, preparation, and humility. But those who earn it are rewarded beyond measure.</p>
+        </div>
+        <button class="read-more" onclick="toggleJourneyText('bawakaraeng')">Read More...</button>
+        <div class="journey-lesson">
+          <strong>Lesson Learned:</strong> The mountain doesn't care about your plans—it cares about your respect. Always prepare, stay humble, and never underestimate nature's power.
+        </div>
+      </div>
+    </div>
+
+    <!-- Latimojong -->
+    <div class="journey-detail" id="journey-latimojong">
+      <div class="journey-images">
+        <img src="Dokumentasi04.jpg" alt="Latimojong 1">
+        <img src="Dokumentasi05.jpg" alt="Latimojong 2">
+        <img src="Dokumentasi06.jpg" alt="Latimojong 3">
+      </div>
+      <div class="journey-story">
+        <h3>Mt. Latimojong: The Highest Peak of Sulawesi</h3>
+        <div class="journey-text" id="text-latimojong">
+          <p>At 3,478 meters, Mt. Latimojong stands as the highest mountain in Sulawesi and one of the most demanding climbs in Indonesia. This expedition pushed us to our absolute limits—physically, mentally, and emotionally. The journey took us through multiple climate zones, from humid lowland forests to freezing alpine meadows near the summit.</p>
+          <p>The trek was grueling: river crossings, steep ascents, slippery trails, and unpredictable weather tested our endurance at every turn. We camped under the stars at 3,000 meters, where temperatures dropped below freezing and the wind howled through the night. But when dawn broke and we made the final push to the summit, all the pain melted away. Standing on the roof of Sulawesi, with clouds beneath our feet and the island stretching endlessly in every direction, we felt truly alive.</p>
+          <p>Latimojong reminded us why we do this—not for glory, but for the moments of pure connection with the wild.</p>
+        </div>
+        <button class="read-more" onclick="toggleJourneyText('latimojong')">Read More...</button>
+        <div class="journey-lesson">
+          <strong>Lesson Learned:</strong> True adventure isn't about reaching the top—it's about every step along the way. The journey itself is the destination.
+        </div>
+      </div>
+    </div>
+
+    <!-- Rammang-Rammang -->
+    <div class="journey-detail" id="journey-rammang">
+      <div class="journey-images">
+        <img src="Dokumentasi07.jpg" alt="Rammang 1">
+        <img src="Dokumentasi08.jpg" alt="Rammang 2">
+        <img src="Dokumentasi09.jpg" alt="Rammang 3">
+      </div>
+      <div class="journey-story">
+        <h3>Rammang-Rammang Karst Village: A Journey Through Ancient Limestone</h3>
+        <div class="journey-text" id="text-rammang">
+          <p>Rammang-Rammang is a place where time seems to stand still. This karst village, surrounded by towering limestone formations and winding rivers, feels like stepping into another world. Our exploration took us through narrow waterways by traditional boat, past rice fields, and into caves that have stood for millions of years.</p>
+          <p>What struck us most wasn't just the geological beauty—it was the way local communities live in harmony with this landscape. They've preserved these formations, protected the ecosystem, and maintained traditions that have existed for centuries. Walking among these ancient stones, we realized that conservation isn't new—it's been practiced by indigenous communities long before modern environmentalism existed.</p>
+          <p>Rammang-Rammang taught us to listen—to the land, to the people, and to the wisdom that comes from living in balance with nature.</p>
+        </div>
+        <button class="read-more" onclick="toggleJourneyText('rammang')">Read More...</button>
+        <div class="journey-lesson">
+          <strong>Lesson Learned:</strong> The best conservation practices come from those who have lived with the land for generations. We must learn from local wisdom, not just impose modern solutions.
+        </div>
+      </div>
+    </div>
+
+    <!-- Bantimurung -->
+    <div class="journey-detail" id="journey-bantimurung">
+      <div class="journey-images">
+        <img src="Dokumentasi10.jpg" alt="Bantimurung 1">
+        <img src="Dokumentasi11.jpg" alt="Bantimurung 2">
+        <img src="Dokumentasi12.jpg" alt="Bantimurung 3">
+      </div>
+      <div class="journey-story">
+        <h3>Bantimurung National Park: The Kingdom of Butterflies</h3>
+        <div class="journey-text" id="text-bantimurung">
+          <p>Known as "The Kingdom of Butterflies," Bantimurung National Park is a testament to the incredible biodiversity of Sulawesi. Our visit coincided with the peak butterfly season, and the sight was nothing short of magical—thousands of colorful butterflies filled the air, dancing among waterfalls and limestone cliffs.</p>
+          <p>Beyond the butterflies, we explored prehistoric caves filled with ancient stalactites and stalagmites, hiked through lush forests teeming with wildlife, and swam in crystal-clear natural pools. But what made this journey truly special was witnessing the park's conservation efforts firsthand. Rangers and local communities work tirelessly to protect endangered species and educate visitors about responsible tourism.</p>
+          <p>Bantimurung showed us that protecting nature isn't just about preserving landscapes—it's about safeguarding entire ecosystems and the life they support.</p>
+        </div>
+        <button class="read-more" onclick="toggleJourneyText('bantimurung')">Read More...</button>
+        <div class="journey-lesson">
+          <strong>Lesson Learned:</strong> Every species, no matter how small, plays a vital role in the ecosystem. When we protect butterflies, we protect entire forests.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Plan Section -->
+  <section class="section" id="planSection">
+    <h2>Next Plan</h2>
+    <div class="plan-cards">
+      <div class="plan-card">
+        <span class="plan-badge">EXPEDITION</span>
+        <h3>Mt. Lompobattang Summit Expedition</h3>
+        <p><strong>Date:</strong> March 15-17, 2025</p>
+        <p><strong>Status:</strong> Open for Registration</p>
+        <p><strong>Mission Focus:</strong> This expedition combines adventure with environmental conservation. We'll conduct a trail cleanup, document local flora and fauna, and educate participants on Leave No Trace principles.</p>
+        <p><strong>Open to:</strong> Public (Max 15 participants)</p>
+        <p><strong>Difficulty:</strong> Moderate to Challenging</p>
+      </div>
+
+      <div class="plan-card">
+        <span class="plan-badge">CONSERVATION</span>
+        <h3>Coastal Cleanup & Marine Conservation</h3>
+        <p><strong>Date:</strong> April 22, 2025 (Earth Day)</p>
+        <p><strong>Status:</strong> Planning Phase</p>
+        <p><strong>Mission Focus:</strong> Join us for a day of coastal cleanup at Losari Beach and surrounding areas. We'll collect trash, educate the public about plastic pollution, and plant mangroves to restore coastal ecosystems.</p>
+        <p><strong>Open to:</strong> Public (All ages welcome)</p>
+        <p><strong>Impact Goal:</strong> Remove 500kg of waste, plant 200 mangrove seedlings</p>
+      </div>
+
+      <div class="plan-card">
+        <span class="plan-badge">EXPLORATION</span>
+        <h3>Tana Toraja Cultural & Nature Immersion</h3>
+        <p><strong>Date:</strong> May 10-14, 2025</p>
+        <p><strong>Status:</strong> Internal Team Trip</p>
+        <p><strong>Mission Focus:</strong> A journey to explore the rich cultural heritage of Toraja while trekking through its stunning highland landscapes. We'll learn from local communities about traditional conservation practices and sustainable tourism.</p>
+        <p><strong>Open to:</strong> Internal Members Only</p>
+        <p><strong>Purpose:</strong> Team building & cultural exchange</p>
+      </div>
+
+      <div class="plan-card">
+        <span class="plan-badge">EDUCATION</span>
+        <h3>Youth Adventure Workshop Series</h3>
+        <p><strong>Date:</strong> Ongoing (Every Saturday)</p>
+        <p><strong>Status:</strong> Open for Enrollment</p>
+        <p><strong>Mission Focus:</strong> Monthly workshops teaching young adventurers (ages 12-18) basic mountaineering skills, first aid, navigation, and environmental ethics. Each session includes a day hike to practice skills in real environments.</p>
+        <p><strong>Open to:</strong> Students & Youth Groups</p>
+        <p><strong>Goal:</strong> Inspire the next generation of responsible adventurers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="section" id="contactSection">
+    <h2>Contact Us</h2>
+    <div class="contact-content">
+      <p>Have questions? Want to join our next adventure? Interested in collaboration?</p>
+      <p>We'd love to hear from you! Clear Adventure welcomes partnerships with organizations, schools, and fellow adventurers who share our commitment to responsible exploration and environmental conservation.</p>
+      
+      <a href="https://wa.me/6281234567890?text=Halo%20Clear%20Adventure!%20Saya%20tertarik%20untuk%20bergabung%20dalam%20petualangan%20kalian.%20Bisa%20tolong%20berikan%20info%20lebih%20lanjut%3F%20Terima%20kasih!" target="_blank" class="wa-button">
+        <span>💬</span>
+        <span>Chat Admin on WhatsApp</span>
+      </a>
+      
+      <p style="margin-top:2rem; font-size:0.95rem; color:var(--text-muted);">Whether you're a seasoned climber or a first-time hiker, there's a place for you in our community. Let's explore together, responsibly.</p>
+    </div>
+  </section>
+
+  <!-- Information Section -->
+  <section class="section" id="infoSection">
+    <h2>Information</h2>
+    <div class="info-grid">
+      
+      <div class="info-section">
+        <h3>🌿 Ethics of Nature Exploration</h3>
+        <ul>
+          <li><strong>Leave No Trace:</strong> Pack out everything you pack in. If you brought it, you take it home—including organic waste like fruit peels.</li>
+          <li><strong>Stay on Trails:</strong> Avoid creating new paths. Erosion and habitat destruction begin with shortcuts.</li>
+          <li><strong>Respect Wildlife:</strong> Observe from a distance. Never feed, touch, or disturb animals in their natural habitat.</li>
+          <li><strong>Minimize Campfire Impact:</strong> Use existing fire rings or portable stoves. In sensitive areas, avoid fires altogether.</li>
+          <li><strong>Be Considerate:</strong> Keep noise levels down. Let nature's sounds be the soundtrack of your journey.</li>
+          <li><strong>Respect Local Communities:</strong> Learn about and honor local customs, traditions, and sacred sites.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🎒 Preparation Before Joining</h3>
+        <ul>
+          <li><strong>Physical Fitness:</strong> Most of our trips require moderate to high fitness levels. Start training at least 4 weeks before the trip.</li>
+          <li><strong>Gear Check:</strong> Invest in quality hiking boots, waterproof jacket, and a reliable backpack. We'll provide a complete gear list upon registration.</li>
+          <li><strong>Medical Clearance:</strong> Inform us of any health conditions. Bring personal medications and a basic first aid kit.</li>
+          <li><strong>Weather Research:</strong> Check forecasts and prepare for sudden changes in mountain weather.</li>
+          <li><strong>Mental Preparation:</strong> Adventure can be challenging. Prepare yourself mentally for fatigue, discomfort, and unpredictability.</li>
+          <li><strong>Emergency Contacts:</strong> Share your itinerary with family and ensure someone knows your plans.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>❓ Frequently Asked Questions</h3>
+        <div class="faq-item">
+          <strong>Q: Do I need prior hiking experience?</strong>
+          <p>It depends on the trip. We offer beginner-friendly hikes as well as advanced expeditions. Each trip listing specifies the difficulty level.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Q: What's included in the trip cost?</strong>
+          <p>Typically: transportation, guide fees, permits, group meals, and group gear. Personal gear and snacks are your responsibility unless stated otherwise.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Q: What if weather conditions are bad?</strong>
+          <p>Safety first, always. If conditions are unsafe, we'll postpone or cancel the trip with full refunds or rescheduling options.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Q: Can I join if I'm a solo traveler?</strong>
+          <p>Absolutely! Many of our members started as solo travelers. Our community is welcoming and inclusive.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Q: How do you practice sustainability?</strong>
+          <p>We follow strict Leave No Trace principles, support local communities, minimize plastic use, and conduct regular trail cleanups.</p>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>📱 Follow Our Community</h3>
+        <p>Stay updated with our latest adventures, conservation efforts, and upcoming trips:</p>
+        <div class="social-links">
+          <a href="https://instagram.com/clear.adv" target="_blank" class="social-link">📸 Instagram</a>
+          <a href="https://tiktok.com/@clear.adv" target="_blank" class="social-link">🎵 TikTok</a>
+          <a href="https://whatsapp.com/channel/0029VaClearAdv" target="_blank" class="social-link">💬 WhatsApp Channel</a>
+        </div>
+      </div>
+
+      <div class="info-section disclaimer">
+        <h3>⚠️ Safety Disclaimer</h3>
+        <p><strong>Adventure activities involve inherent risks.</strong> While we take every precaution to ensure safety, participants must understand that hiking, climbing, and wilderness exploration can be physically demanding and potentially dangerous.</p>
+        <p>By joining our trips, you acknowledge these risks and agree to follow all safety instructions provided by our guides. You're responsible for your own health, fitness, and insurance coverage.</p>
+        <p><strong>Clear Adventure is not liable for injuries, accidents, or losses</strong> that occur during activities. Always prioritize your safety and know your limits.</p>
+        <p style="margin-top:1rem;"><em>Adventure responsibly. Return safely. Inspire others.</em></p>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- Audio Control -->
+<div class="audio-control" id="audioControl" onclick="toggleAudio()">
+  <span id="audioIcon">🔊</span>
+</div>
+
+<script>
+// Dark Mode Toggle
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const icon = document.getElementById('darkIcon');
+  icon.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
+
+// Load dark mode preference
+window.addEventListener('DOMContentLoaded', () => {
+  if(localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    document.getElementById('darkIcon').textContent = '☀️';
+  }
+});
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  if(window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+// Show Mission Page
+function showMission() {
+  document.getElementById('hero').style.display = 'none';
+  document.getElementById('missionPage').classList.add('show');
+}
+
+// Back to Hero
+function backToHero() {
+  document.getElementById('missionPage').classList.remove('show');
+  setTimeout(() => {
+    document.getElementById('hero').style.display = 'flex';
+  }, 300);
+}
+
+// Toggle Translation
+let isEnglish = true;
+function toggleTranslate() {
+  const englishText = document.getElementById('missionEnglish');
+  const indonesianText = document.getElementById('missionIndonesian');
+  const btn = document.querySelector('.translate-btn');
+  
+  if(isEnglish) {
+    englishText.style.display = 'none';
+    indonesianText.style.display = 'block';
+    btn.textContent = 'View English Version';
+  } else {
+    englishText.style.display = 'block';
+    indonesianText.style.display = 'none';
+    btn.textContent = 'Lihat Terjemahan';
+  }
+  isEnglish = !isEnglish;
+}
+
+// Explore Journey - Show Main Content & Play Music
+function exploreJourney() {
+  document.getElementById('hero').style.display = 'none';
+  document.getElementById('mainContent').classList.add('show');
+  document.getElementById('audioControl').classList.add('show');
+  
+  const music = document.getElementById('bgMusic');
+  music.play();
+}
+
+// Show Section
+function showSection(section) {
+  // If Home clicked, go back to hero
+  if(section === 'home') {
+    document.getElementById('mainContent').classList.remove('show');
+    document.getElementById('audioControl').classList.remove('show');
+    const music = document.getElementById('bgMusic');
+    music.pause();
+    music.currentTime = 0;
+    
+    setTimeout(() => {
+      document.getElementById('hero').style.display = 'flex';
+    }, 300);
+    return;
+  }
+  
+  // Hide all sections
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  
+  // Remove active from nav
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  
+  // Show selected section
+  const sections = {
+    'about': 'aboutSection',
+    'journey': 'journeySection',
+    'plan': 'planSection',
+    'contact': 'contactSection',
+    'info': 'infoSection'
+  };
+  
+  document.getElementById(sections[section]).classList.add('active');
+  
+  // Set active nav
+  event.target.classList.add('active');
+}
+
+// Toggle Audio
+function toggleAudio() {
+  const music = document.getElementById('bgMusic');
+  const icon = document.getElementById('audioIcon');
+  
+  if(music.paused) {
+    music.play();
+    icon.textContent = '🔊';
+  } else {
+    music.pause();
+    icon.textContent = '🔇';
+  }
+}
+
+// Journey Tabs
+function showJourney(journeyId) {
+  // Hide all journey details
+  document.querySelectorAll('.journey-detail').forEach(j => j.classList.remove('show'));
+  
+  // Remove active from tabs
+  document.querySelectorAll('.journey-tab').forEach(t => t.classList.remove('active'));
+  
+  // Show selected journey
+  document.getElementById('journey-' + journeyId).classList.add('show');
+  
+  // Set active tab
+  event.target.classList.add('active');
+}
+
+// Toggle Journey Text (Read More)
+function toggleJourneyText(journeyId) {
+  const textElement = document.getElementById('text-' + journeyId);
+  const button = event.target;
+  
+  textElement.classList.toggle('expanded');
+  
+  if(textElement.classList.contains('expanded')) {
+    button.textContent = 'Read Less';
+  } else {
+    button.textContent = 'Read More...';
+  }
+}
+</script>
+
+</body>
+</html>
