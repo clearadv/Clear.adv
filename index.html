@@ -789,15 +789,31 @@ body {
   }
   
   .footer-social {
-    padding: 0.8rem 1rem;
+    padding: 1rem;
     gap: 0.8rem;
     flex-wrap: wrap;
   }
   
   .social-footer-link {
-    padding: 0.5rem 1rem;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.85rem;
+    gap: 0.5rem;
+    flex: 0 1 auto;
+  }
+  
+  .social-footer-link .emoji {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-social {
+    gap: 0.5rem;
+  }
+  
+  .social-footer-link {
+    padding: 0.6rem 1rem;
     font-size: 0.8rem;
-    gap: 0.3rem;
   }
 }
   
@@ -1217,15 +1233,15 @@ body {
 <!-- Footer Social Media -->
 <div class="footer-social" id="footerSocial">
   <a href="https://instagram.com/clear.adv" target="_blank" class="social-footer-link instagram">
-    <span>📸</span>
+    <span class="emoji">📸</span>
     <span>Instagram</span>
   </a>
   <a href="https://tiktok.com/@clear.adv" target="_blank" class="social-footer-link tiktok">
-    <span>🎵</span>
+    <span class="emoji">🎵</span>
     <span>TikTok</span>
   </a>
   <a href="https://whatsapp.com/channel/0029VaClearAdv" target="_blank" class="social-footer-link whatsapp">
-    <span>💬</span>
+    <span class="emoji">💬</span>
     <span>WhatsApp</span>
   </a>
 </div>
@@ -1389,4 +1405,4 @@ function toggleJourneyText(journeyId) {
 </script>
 
 </body>
-  </html>
+</html>
